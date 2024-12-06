@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=filechecker
+Exec=filechecker
+Icon=org.gnome.filechecker
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true

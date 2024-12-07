@@ -6,30 +6,135 @@
     <property name="title" translatable="yes">FileChecker</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
-    <property name="content">
-      <object class="AdwToolbarView">
-        <child type="top">
-          <object class="AdwHeaderBar">
-            <child type="end">
-              <object class="GtkMenuButton">
-                <property name="primary">True</property>
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="tooltip-text" translatable="yes">Main Menu</property>
-                <property name="menu-model">primary_menu</property>
-              </object>
-            </child>
-          </object>
+    <child>
+    <object class="AdwHeaderBar" id="header_bar">
+      <child>
+<object class="GtkMenuButton" id="menu_button">
+          <property name="icon-name">open-menu-symbolic</property>
+          <property name="popover">
+            <object class="GtkPopoverMenu" id="menu_popover">
+
+          <!-- Реализация  HeaderBar-->
+
+            </object>
+          </property>
+        </object>
         </child>
-        <property name="content">
-          <object class="GtkLabel" id="label">
-            <property name="label" translatable="yes">Hello, World!</property>
+        </object>
+      </child>
+
+      <child>
+  <object class="GtkScrolledWindow">
+    <property name="hscrollbar-policy">never</property>
+    <property name="min-content-height">420</property>
+    <property name="vexpand">True</property>
+    <property name="child">
+      <object class="AdwClamp">
+        <property name="child">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">18</property>
+            <property name="margin-top">24</property>
+            <property name="margin-bottom">24</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+
+            <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">18</property>
+            <property name="margin-top">24</property>
+            <property name="margin-bottom">24</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+
+
+
+            <child>
+              <object class="GtkLabel" id="dir_label1">
+            <property name="label" translatable="yes">Please choose the directory</property>
+                <property name="width-chars">30</property>
             <style>
               <class name="title-1"/>
             </style>
           </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="folder_button1">
+        <property name="label" translatable="yes">Select</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+      </object>
+            </child>
+
+
+              </object>
+              </child>
+
+              <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">18</property>
+            <property name="margin-top">24</property>
+            <property name="margin-bottom">24</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+
+
+
+            <child>
+            <object class="GtkLabel" id="dir_label2">
+            <property name="label" translatable="yes">Please choose the directory</property>
+              <property name="width-chars">30</property>
+            <style>
+              <class name="title-1"/>
+            </style>
+          </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="folder_button2">
+        <property name="label" translatable="yes">Select</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+      </object>
+            </child>
+              </object>
+              </child>
+            <child>
+              <object class="GtkBox" id="box_with_constraints">
+  <property name="width-request">200</property> <!-- Максимальная ширина контейнера -->
+  <property name="height-request">50</property> <!-- Максимальная высота контейнера -->
+                <property name="halign">center</property> <!-- Центровка по горизонтали -->
+  <child>
+              <object class="GtkButton" id="action_button">
+        <property name="label" translatable="yes">Compare</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+                <property name="width-request">200</property>
+  <property name="height-request">50</property>
+
+      </object>
+            </child>
+                </object>
+  </child>
+            <child>
+            <object class="GtkLabel" id="info_label">
+            <property name="label" translatable="yes">Select dirs</property>
+            <style>
+              <class name="title-1"/>
+            </style>
+          </object>
+            </child>
+          </object>
         </property>
       </object>
     </property>
+  </object>
+</child>
+
   </template>
   <menu id="primary_menu">
     <section>
@@ -42,9 +147,10 @@
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_About FileChecker</attribute>
+        <attribute name="label" translatable="yes">_About Test1</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>
   </menu>
 </interface>
+

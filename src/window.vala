@@ -54,10 +54,10 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
     void on_folder_button_clicked(int number) {
     // Создаем диалог выбора папки
-    var dialog = new FileChooserDialog("Выберите папку", null, FileChooserAction.SELECT_FOLDER);
+    var dialog = new FileChooserDialog("Choose dir", null, FileChooserAction.SELECT_FOLDER);
 
-    dialog.add_button("Отмена", ResponseType.CANCEL);
-    dialog.add_button("Выбрать", ResponseType.OK);
+    dialog.add_button("Cancel", ResponseType.CANCEL);
+    dialog.add_button("Choose", ResponseType.OK);
 
     dialog.set_modal(true);
 
@@ -81,25 +81,32 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
     private void on_action_button_clicked() {
         info_label.set_text("");
-        var folder1 = dir_label1.get_text();
-        var folder2 = dir_label2.get_text();
+        var original_folder = dir_label1.get_text();
+        var corrupted_folder = dir_label2.get_text();
 
-        if (folder1 == "" || folder2 == "") {
-            info_label.set_text("Пожалуйста, выберите обе папки.");
+        if (original_folder == "" || corrupted_folder == "") {
+            info_label.set_text("Please, choose both dirs");
             return;
         }
 
-        int context_size = 10;
+        var results = new ArrayList<string>();
+        var original_dir = File.new_for_path(original_folder);
+        var corrupted_dir = File.new_for_path(corrupted_folder);
 
-        var analyzer = new Analyzer();
-        var results = analyzer.analyze_directories(folder1, folder2, context_size);
+        var FileComparator = new FileComparator();
+        // FileComparator.CONTEXT_SIZE = 8;
+
+        if (!original_dir.query_exists() || !corrupted_dir.query_exists()) {
+            info_label.set_text("Error: One of the directories does not exist");
+        return;
+        }
+
+        FileComparator.compare_directory(original_dir, corrupted_dir,results);
+
 
         foreach (var result in results) {
             info_label.set_text(info_label.get_text() + result);
         }
-
-
-
     }
 }
 

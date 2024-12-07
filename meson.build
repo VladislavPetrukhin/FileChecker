@@ -14,7 +14,7 @@ srcdir = meson.project_source_root() / 'src'
 vapi_dir = meson.current_source_dir() / 'vapi'
 
 add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
-add_project_arguments('-DGETTEXT_PACKAGE="' + meson.project_name () + '"', language: 'c')
+add_project_arguments('-DGETTEXT_PACKAGE="' + meson.project_name (), language: 'c')
 
 config_h = configuration_data()
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version ())

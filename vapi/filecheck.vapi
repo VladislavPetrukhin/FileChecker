@@ -2,10 +2,9 @@
 
 namespace FileCheck {
 	[CCode (cheader_filename = "filecheck.h")]
-	public class Analyzer {
-		public Analyzer ();
-		public Gee.ArrayList<string> analyze_directories (string dir1, string dir2, int context_size);
-		public string find_corruption (string file1, string file2, int context_size);
-		public Gee.ArrayList<string> get_files (string directory);
+	public class FileComparator {
+		public int CONTEXT_SIZE;
+		public FileComparator ();
+		public void compare_directory (GLib.File original_dir, GLib.File corrupted_dir, Gee.ArrayList<string> results);
 	}
 }

@@ -3,9 +3,10 @@ using Gee;
 
 namespace FileCheck {
 
-public class FileComparator{
+public class Analyzer{
 
-    public FileComparator() {}
+    public Analyzer() {}
+
     public int CONTEXT_SIZE = 4;  // Количество байтов до и после различия
 
     // Рекурсивная функция для обхода всех файлов в каталоге

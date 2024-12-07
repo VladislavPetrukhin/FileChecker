@@ -93,7 +93,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         var original_dir = File.new_for_path(original_folder);
         var corrupted_dir = File.new_for_path(corrupted_folder);
 
-        var FileComparator = new FileComparator();
+        var analyzer = new Analyzer();
         // FileComparator.CONTEXT_SIZE = 8;
 
         if (!original_dir.query_exists() || !corrupted_dir.query_exists()) {
@@ -101,7 +101,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         return;
         }
 
-        FileComparator.compare_directory(original_dir, corrupted_dir,results);
+        analyzer.compare_directory(original_dir, corrupted_dir,results);
 
 
         foreach (var result in results) {

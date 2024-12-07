@@ -22,49 +22,49 @@ G_BEGIN_DECLS
 #endif
 #endif
 
-#define FILE_CHECK_TYPE_FILE_COMPARATOR (file_check_file_comparator_get_type ())
-#define FILE_CHECK_FILE_COMPARATOR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), FILE_CHECK_TYPE_FILE_COMPARATOR, FileCheckFileComparator))
-#define FILE_CHECK_FILE_COMPARATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), FILE_CHECK_TYPE_FILE_COMPARATOR, FileCheckFileComparatorClass))
-#define FILE_CHECK_IS_FILE_COMPARATOR(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), FILE_CHECK_TYPE_FILE_COMPARATOR))
-#define FILE_CHECK_IS_FILE_COMPARATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), FILE_CHECK_TYPE_FILE_COMPARATOR))
-#define FILE_CHECK_FILE_COMPARATOR_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), FILE_CHECK_TYPE_FILE_COMPARATOR, FileCheckFileComparatorClass))
+#define FILE_CHECK_TYPE_ANALYZER (file_check_analyzer_get_type ())
+#define FILE_CHECK_ANALYZER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), FILE_CHECK_TYPE_ANALYZER, FileCheckAnalyzer))
+#define FILE_CHECK_ANALYZER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), FILE_CHECK_TYPE_ANALYZER, FileCheckAnalyzerClass))
+#define FILE_CHECK_IS_ANALYZER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), FILE_CHECK_TYPE_ANALYZER))
+#define FILE_CHECK_IS_ANALYZER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), FILE_CHECK_TYPE_ANALYZER))
+#define FILE_CHECK_ANALYZER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), FILE_CHECK_TYPE_ANALYZER, FileCheckAnalyzerClass))
 
-typedef struct _FileCheckFileComparator FileCheckFileComparator;
-typedef struct _FileCheckFileComparatorClass FileCheckFileComparatorClass;
-typedef struct _FileCheckFileComparatorPrivate FileCheckFileComparatorPrivate;
+typedef struct _FileCheckAnalyzer FileCheckAnalyzer;
+typedef struct _FileCheckAnalyzerClass FileCheckAnalyzerClass;
+typedef struct _FileCheckAnalyzerPrivate FileCheckAnalyzerPrivate;
 
-struct _FileCheckFileComparator {
+struct _FileCheckAnalyzer {
 	GTypeInstance parent_instance;
 	volatile int ref_count;
-	FileCheckFileComparatorPrivate * priv;
+	FileCheckAnalyzerPrivate * priv;
 	gint CONTEXT_SIZE;
 };
 
-struct _FileCheckFileComparatorClass {
+struct _FileCheckAnalyzerClass {
 	GTypeClass parent_class;
-	void (*finalize) (FileCheckFileComparator *self);
+	void (*finalize) (FileCheckAnalyzer *self);
 };
 
-VALA_EXTERN gpointer file_check_file_comparator_ref (gpointer instance);
-VALA_EXTERN void file_check_file_comparator_unref (gpointer instance);
-VALA_EXTERN GParamSpec* file_check_param_spec_file_comparator (const gchar* name,
-                                                   const gchar* nick,
-                                                   const gchar* blurb,
-                                                   GType object_type,
-                                                   GParamFlags flags);
-VALA_EXTERN void file_check_value_set_file_comparator (GValue* value,
-                                           gpointer v_object);
-VALA_EXTERN void file_check_value_take_file_comparator (GValue* value,
-                                            gpointer v_object);
-VALA_EXTERN gpointer file_check_value_get_file_comparator (const GValue* value);
-VALA_EXTERN GType file_check_file_comparator_get_type (void) G_GNUC_CONST ;
-G_DEFINE_AUTOPTR_CLEANUP_FUNC (FileCheckFileComparator, file_check_file_comparator_unref)
-VALA_EXTERN FileCheckFileComparator* file_check_file_comparator_new (void);
-VALA_EXTERN FileCheckFileComparator* file_check_file_comparator_construct (GType object_type);
-VALA_EXTERN void file_check_file_comparator_compare_directory (FileCheckFileComparator* self,
-                                                   GFile* original_dir,
-                                                   GFile* corrupted_dir,
-                                                   GeeArrayList* results);
+VALA_EXTERN gpointer file_check_analyzer_ref (gpointer instance);
+VALA_EXTERN void file_check_analyzer_unref (gpointer instance);
+VALA_EXTERN GParamSpec* file_check_param_spec_analyzer (const gchar* name,
+                                            const gchar* nick,
+                                            const gchar* blurb,
+                                            GType object_type,
+                                            GParamFlags flags);
+VALA_EXTERN void file_check_value_set_analyzer (GValue* value,
+                                    gpointer v_object);
+VALA_EXTERN void file_check_value_take_analyzer (GValue* value,
+                                     gpointer v_object);
+VALA_EXTERN gpointer file_check_value_get_analyzer (const GValue* value);
+VALA_EXTERN GType file_check_analyzer_get_type (void) G_GNUC_CONST ;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (FileCheckAnalyzer, file_check_analyzer_unref)
+VALA_EXTERN FileCheckAnalyzer* file_check_analyzer_new (void);
+VALA_EXTERN FileCheckAnalyzer* file_check_analyzer_construct (GType object_type);
+VALA_EXTERN void file_check_analyzer_compare_directory (FileCheckAnalyzer* self,
+                                            GFile* original_dir,
+                                            GFile* corrupted_dir,
+                                            GeeArrayList* results);
 
 G_END_DECLS
 

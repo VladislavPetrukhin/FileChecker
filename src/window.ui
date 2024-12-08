@@ -74,6 +74,13 @@
             </style>
           </object>
             </child>
+
+              <child>
+
+
+</child>
+
+
             <child>
               <object class="GtkButton" id="folder_button2">
         <property name="label" translatable="yes">Select</property>
@@ -114,17 +121,13 @@
 
             <child>
 
-
-            <object class="GtkBox">
+              <object class="GtkBox" id="box2">
             <property name="orientation">horizontal</property>
               <property name="halign">center</property>
 
 
-              <child>
-
-
-
-            <object class="GtkLabel" id="files_label">
+                <child>
+            <object class="GtkLabel">
             <property name="label" translatable="yes">Files</property>
               <property name="wrap">true</property>
               <property name="valign">start</property>
@@ -137,7 +140,7 @@
           </child>
 
               <child>
-            <object class="GtkLabel" id="bytes_label">
+            <object class="GtkLabel">
             <property name="label" translatable="yes">Bytes</property>
               <property name="wrap">true</property>
               <property name="valign">start</property>
@@ -150,7 +153,7 @@
 
 
               <child>
-            <object class="GtkLabel" id="orig_label">
+            <object class="GtkLabel">
             <property name="label" translatable="yes">Original</property>
               <property name="wrap">true</property>
               <property name="valign">start</property>
@@ -162,7 +165,7 @@
                 </child>
 
               <child>
-            <object class="GtkLabel" id="corr_label">
+            <object class="GtkLabel">
             <property name="label" translatable="yes">Corrupted</property>
               <property name="wrap">true</property>
               <property name="valign">start</property>
@@ -174,10 +177,88 @@
                 </child>
 
               <child>
-            <object class="GtkLabel" id="context_label">
+            <object class="GtkLabel">
             <property name="label" translatable="yes">Context</property>
               <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
 
+
+
+                </object>
+
+
+
+<object class="GtkScrolledWindow">
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <child>
+
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+              <property name="halign">center</property>
+
+
+              <child>
+            <object class="GtkLabel" id="files_label">
+            <property name="label" translatable="yes"></property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+
+          </child>
+
+              <child>
+            <object class="GtkLabel" id="bytes_label">
+            <property name="label" translatable="yes"></property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+
+              <child>
+            <object class="GtkLabel" id="orig_label">
+            <property name="label" translatable="yes"></property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+              <child>
+            <object class="GtkLabel" id="corr_label">
+            <property name="label" translatable="yes"></property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+              <child>
+            <object class="GtkLabel" id="context_label">
+            <property name="label" translatable="yes"></property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
               <property name="margin-start">10</property>
             <style>
               <class name="title-3"/>
@@ -190,6 +271,8 @@
 
               </object>
             </child>
+  </object>
+</child>
           </object>
         </property>
       </object>

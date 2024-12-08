@@ -73,7 +73,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
     var dialog = new FileChooserDialog("Choose dir", null, FileChooserAction.SELECT_FOLDER);
 
     dialog.add_button("Cancel", ResponseType.CANCEL);
-    dialog.add_button("Choose", ResponseType.OK);
+    dialog.add_button("Select", ResponseType.OK);
 
     dialog.set_modal(true);
 
@@ -96,6 +96,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 }
 
     private void on_action_button_clicked() {
+
         info_label.set_text("");
         var original_folder = dir_label1.get_text();
         var corrupted_folder = dir_label2.get_text();

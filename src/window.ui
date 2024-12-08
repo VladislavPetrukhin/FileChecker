@@ -3,34 +3,24 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="Adw" version="1.0"/>
   <template class="FilecheckerWindow" parent="AdwApplicationWindow">
-    <property name="title" translatable="yes">FileChecker</property>
+    <property name="title" translatable="yes">GuiTest5</property>
     <property name="default-width">800</property>
     <property name="default-height">600</property>
-    <child>
-    <object class="AdwHeaderBar" id="header_bar">
-      <child>
-<object class="GtkMenuButton" id="menu_button">
-          <property name="icon-name">open-menu-symbolic</property>
-          <property name="popover">
-            <object class="GtkPopoverMenu" id="menu_popover">
-
-          <!-- Реализация  HeaderBar-->
-
-            </object>
-          </property>
-        </object>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="primary">True</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                <property name="menu-model">primary_menu</property>
+              </object>
+            </child>
+          </object>
         </child>
-        </object>
-      </child>
-
-      <child>
-  <object class="GtkScrolledWindow">
-    <property name="hscrollbar-policy">never</property>
-    <property name="min-content-height">420</property>
-    <property name="vexpand">True</property>
-    <property name="child">
-      <object class="AdwClamp">
-        <property name="child">
+        <property name="content">
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <property name="spacing">18</property>
@@ -42,11 +32,7 @@
             <child>
             <object class="GtkBox">
             <property name="orientation">horizontal</property>
-            <property name="spacing">18</property>
-            <property name="margin-top">24</property>
-            <property name="margin-bottom">24</property>
-            <property name="margin-start">12</property>
-            <property name="margin-end">12</property>
+
 
 
 
@@ -75,11 +61,7 @@
               <child>
             <object class="GtkBox">
             <property name="orientation">horizontal</property>
-            <property name="spacing">18</property>
-            <property name="margin-top">24</property>
-            <property name="margin-bottom">24</property>
-            <property name="margin-start">12</property>
-            <property name="margin-end">12</property>
+
 
 
 
@@ -120,6 +102,7 @@
             </child>
                 </object>
   </child>
+
             <child>
             <object class="GtkLabel" id="info_label">
             <property name="label" translatable="yes">Select dirs</property>
@@ -127,14 +110,90 @@
               <class name="title-1"/>
             </style>
           </object>
+                </child>
+
+            <child>
+
+
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+              <property name="halign">center</property>
+
+
+              <child>
+
+
+
+            <object class="GtkLabel" id="files_label">
+            <property name="label" translatable="yes">Files</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+
+          </child>
+
+              <child>
+            <object class="GtkLabel" id="bytes_label">
+            <property name="label" translatable="yes">Bytes</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+
+              <child>
+            <object class="GtkLabel" id="orig_label">
+            <property name="label" translatable="yes">Original</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+              <child>
+            <object class="GtkLabel" id="corr_label">
+            <property name="label" translatable="yes">Corrupted</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+              <child>
+            <object class="GtkLabel" id="context_label">
+            <property name="label" translatable="yes">Context</property>
+              <property name="wrap">true</property>
+
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+
+
+
+              </object>
             </child>
           </object>
         </property>
       </object>
     </property>
-  </object>
-</child>
-
   </template>
   <menu id="primary_menu">
     <section>
@@ -147,10 +206,9 @@
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_About Test1</attribute>
+        <attribute name="label" translatable="yes">_About GuiTest5</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>
   </menu>
 </interface>
-

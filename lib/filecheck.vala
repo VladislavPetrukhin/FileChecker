@@ -80,7 +80,7 @@ public class Analyzer{
                     if (original_buffer[i] != corrupted_buffer[i]) {
                         if(!is_last_corrupted){
                             result = "\nFile ";
-                            result+=original_file.get_path();
+                            result+=original_file.get_basename();
                             result+=" byte: ";
                             result+=(offset + i).to_string();
                             result+=" orig=";

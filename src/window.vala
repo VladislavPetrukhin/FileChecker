@@ -33,6 +33,21 @@ public class Filechecker.Window : Adw.ApplicationWindow {
     private unowned Gtk.Label info_label;
 
     [GtkChild]
+    private unowned Gtk.Label files_label;
+
+    [GtkChild]
+    private unowned Gtk.Label bytes_label;
+
+    [GtkChild]
+    private unowned Gtk.Label orig_label;
+
+    [GtkChild]
+    private unowned Gtk.Label corr_label;
+
+    [GtkChild]
+    private unowned Gtk.Label context_label;
+
+    [GtkChild]
     private unowned Gtk.Button folder_button1;
 
     [GtkChild]
@@ -49,6 +64,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         folder_button1.clicked.connect(() => on_folder_button_clicked(1));
         folder_button2.clicked.connect(() => on_folder_button_clicked(2));
         action_button.clicked.connect(on_action_button_clicked);
+
     }
 
 
@@ -103,11 +119,35 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
         analyzer.compare_directory(original_dir, corrupted_dir,results);
 
+        string filename = "";
+        string number_byte = "";
+        string orig_byte = "";
+        string corr_byte = "";
+        string context_left = "";
+        string context_right = "";
 
         foreach (var result in results) {
-            info_label.set_text(info_label.get_text() + result);
+            info_label.set_text("Differences:");
+            if(result.contains("byte")){
+                filename = result.split("File ")[1].split(" byte")[0];
+                number_byte = result.split("byte: ")[1].split(" orig")[0];
+                orig_byte = result.split("orig=")[1].split(" corr")[0];
+                corr_byte = result.split("corr=")[1].split(" left")[0];
+                context_left = result.split("left: ")[1].split(" right")[0];
+                context_right = result.split("right: ")[1];
+
+                files_label.set_text(files_label.get_text() + "\n\n" + filename);
+                bytes_label.set_text(bytes_label.get_text() + "\n\n" + number_byte);
+                orig_label.set_text(orig_label.get_text() + "\n\n" + orig_byte);
+                corr_label.set_text(corr_label.get_text() + "\n\n" + corr_byte);
+                context_label.set_text(context_label.get_text() + "\n\n" + context_left + context_right);
+
+
+}
         }
     }
 }
+
+
 
 

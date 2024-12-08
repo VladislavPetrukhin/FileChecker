@@ -31,22 +31,6 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
     [GtkChild]
     private unowned Gtk.Label info_label;
-/*
-    [GtkChild]
-    private unowned Gtk.Label files_label;
-
-    [GtkChild]
-    private unowned Gtk.Label bytes_label;
-
-    [GtkChild]
-    private unowned Gtk.Label orig_label;
-
-    [GtkChild]
-    private unowned Gtk.Label corr_label;
-
-    [GtkChild]
-    private unowned Gtk.Label context_label;
-*/
     [GtkChild]
     private unowned Gtk.Button folder_button1;
 
@@ -59,6 +43,11 @@ public class Filechecker.Window : Adw.ApplicationWindow {
     [GtkChild]
     private unowned Gtk.Box button_container;
 
+    [GtkChild]
+    private unowned Gtk.SpinButton spin_button;
+
+    private const int CONTEXT_SIZE_DEFAULT = 4;
+
 
     public Window (Gtk.Application app) {
         Object (application: app);
@@ -68,6 +57,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         folder_button2.clicked.connect(() => on_folder_button_clicked(2));
         action_button.clicked.connect(on_action_button_clicked);
 
+        spin_button.set_value(CONTEXT_SIZE_DEFAULT);
     }
 
 
@@ -114,7 +104,8 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         var corrupted_dir = File.new_for_path(corrupted_folder);
 
         var analyzer = new Analyzer();
-        // FileComparator.CONTEXT_SIZE = 8;
+
+        analyzer.CONTEXT_SIZE = (int)spin_button.get_value();
 
         if (!original_dir.query_exists() || !corrupted_dir.query_exists()) {
             info_label.set_text("Error: One of the directories does not exist");
@@ -123,37 +114,11 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
         analyzer.compare_directory(original_dir, corrupted_dir,results);
 
-        populate_buttons(results);
+        create_buttons(results);
 
-        string filename = "";
-        string number_byte = "";
-        string orig_byte = "";
-        string corr_byte = "";
-        string context_left = "";
-        string context_right = "";
-/*
-        foreach (var result in results) {
-            info_label.set_text("Differences:");
-            if(result.contains("byte")){
-                filename = result.split("File ")[1].split(" byte")[0];
-                number_byte = result.split("byte: ")[1].split(" orig")[0];
-                orig_byte = result.split("orig=")[1].split(" corr")[0];
-                corr_byte = result.split("corr=")[1].split(" left")[0];
-                context_left = result.split("left: ")[1].split(" right")[0];
-                context_right = result.split("right: ")[1];
-
-                files_label.set_text(files_label.get_text() + "\n\n" + filename);
-                bytes_label.set_text(bytes_label.get_text() + "\n\n" + number_byte);
-                orig_label.set_text(orig_label.get_text() + "\n\n" + orig_byte);
-                corr_label.set_text(corr_label.get_text() + "\n\n" + corr_byte);
-                context_label.set_text(context_label.get_text() + "\n\n" + context_left + " "+ corr_byte +" "+context_right);
-
-
-}
-        }*/
     }
 
-    private void populate_buttons(ArrayList<string> results) {
+    private void create_buttons(ArrayList<string> results) {
         // Очищаем контейнер
         while (button_container.get_first_child() != null) {
             button_container.remove(button_container.get_first_child());

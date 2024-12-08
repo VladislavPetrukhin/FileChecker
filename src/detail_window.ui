@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="FilecheckerDetailWindow" parent="AdwApplicationWindow">
+     <property name="title" translatable="yes">Detail Analyze</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="primary">True</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                <property name="menu-model">primary_menu</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <property name="content">
+
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">10</property>
+
+            <style>
+              <class name="content"/>
+            </style>
+
+            <child>
+              <object class="GtkLabel" id="file_label">
+            <property name="label" translatable="yes">Filename</property>
+                <property name="halign">center</property>
+                <property name="wrap">true</property>
+            <style>
+              <class name="title-2"/>
+            </style>
+          </object>
+              </child>
+
+            <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <style>
+              <class name="content"/>
+            </style>
+
+               <child>
+              <object class="GtkLabel">
+            <property name="label" translatable="yes">Bytes: </property>
+                <property name="margin-start">30</property>
+
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+              </child>
+
+
+              <child>
+              <object class="GtkLabel" id="bytes_label">
+            <property name="label" translatable="yes"></property>
+            <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
+          </object>
+            </child>
+
+
+            <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <style>
+              <class name="content"/>
+            </style>
+
+               <child>
+              <object class="GtkLabel">
+            <property name="label" translatable="yes">Original: </property>
+          <property name="margin-start">30</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+              </child>
+
+
+              <child>
+              <object class="GtkLabel" id="orig_label">
+            <property name="label" translatable="yes"></property>
+                <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
+          </object>
+            </child>
+
+
+            <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <style>
+              <class name="content"/>
+            </style>
+
+               <child>
+              <object class="GtkLabel">
+            <property name="label" translatable="yes">Corrupted: </property>
+          <property name="margin-start">30</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+              </child>
+
+
+              <child>
+              <object class="GtkLabel" id="corr_label">
+            <property name="label" translatable="yes"></property>
+          <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
+          </object>
+            </child>
+
+            <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <style>
+              <class name="content"/>
+            </style>
+
+               <child>
+              <object class="GtkLabel">
+            <property name="label" translatable="yes">Context original: </property>
+          <property name="margin-start">30</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+              </child>
+
+              <child>
+              <object class="GtkLabel" id="context_left_orig_label">
+            <property name="label" translatable="yes"></property>
+            <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
+              <child>
+              <object class="GtkLabel" id="context_bytes_orig_label">
+            <property name="label" translatable="yes"></property>
+            <property name="wrap">true</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+              </child>
+
+              <child>
+              <object class="GtkLabel" id="context_right_orig_label">
+            <property name="label" translatable="yes"></property>
+            <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
+          </object>
+            </child>
+
+            <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+              <property name="halign">start</property>
+            <style>
+              <class name="content"/>
+            </style>
+
+               <child>
+              <object class="GtkLabel">
+            <property name="label" translatable="yes">Context corrupted: </property>
+          <property name="margin-start">30</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+              </child>
+
+
+              <child>
+              <object class="GtkLabel" id="context_left_corr_label">
+            <property name="label" translatable="yes"></property>
+            <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
+              <child>
+              <object class="GtkLabel" id="context_bytes_corr_label">
+            <property name="label" translatable="yes"></property>
+              <property name="wrap">true</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+              </child>
+
+              <child>
+              <object class="GtkLabel" id="context_right_corr_label">
+            <property name="label" translatable="yes"></property>
+            <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
+          </object>
+            </child>
+
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About GuiTest6</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
+

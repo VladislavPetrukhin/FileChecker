@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="FilecheckerWindow" parent="AdwApplicationWindow">
+    <property name="title" translatable="yes">GuiTest5</property>
+    <property name="default-width">800</property>
+    <property name="default-height">800</property>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="primary">True</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Main Menu</property>
+                <property name="menu-model">primary_menu</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <property name="content">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">18</property>
+            <property name="margin-top">24</property>
+            <property name="margin-bottom">24</property>
+            <property name="margin-start">12</property>
+            <property name="margin-end">12</property>
+
+            <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+              <property name="halign">center</property>
+
+
+
+
+            <child>
+              <object class="GtkLabel" id="dir_label1">
+            <property name="label" translatable="yes">Please choose the directory</property>
+                <property name="width-chars">30</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="folder_button1">
+        <property name="label" translatable="yes">Select</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+      </object>
+            </child>
+
+
+              </object>
+              </child>
+
+              <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+              <property name="halign">center</property>
+
+
+
+
+            <child>
+            <object class="GtkLabel" id="dir_label2">
+            <property name="label" translatable="yes">Please choose the directory</property>
+              <property name="width-chars">30</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+            </child>
+
+              <child>
+
+
+</child>
+
+
+            <child>
+              <object class="GtkButton" id="folder_button2">
+        <property name="label" translatable="yes">Select</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+      </object>
+            </child>
+              </object>
+              </child>
+            <child>
+              <object class="GtkBox" id="box_with_constraints">
+  <property name="width-request">200</property> <!-- Максимальная ширина контейнера -->
+  <property name="height-request">50</property> <!-- Максимальная высота контейнера -->
+                <property name="halign">center</property> <!-- Центровка по горизонтали -->
+  <child>
+              <object class="GtkButton" id="action_button">
+        <property name="label" translatable="yes">Compare</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+                <property name="width-request">200</property>
+  <property name="height-request">50</property>
+
+      </object>
+            </child>
+                </object>
+  </child>
+
+            <child>
+            <object class="GtkLabel" id="info_label">
+            <property name="label" translatable="yes">Select dirs</property>
+            <style>
+              <class name="title-1"/>
+            </style>
+          </object>
+                </child>
+
+            <child>
+
+              <object class="GtkBox" id="box2">
+            <property name="orientation">horizontal</property>
+              <property name="halign">center</property>
+
+
+                <child>
+            <object class="GtkLabel">
+            <property name="label" translatable="yes">Files</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+
+          </child>
+
+              <child>
+            <object class="GtkLabel">
+            <property name="label" translatable="yes">Bytes</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+
+              <child>
+            <object class="GtkLabel">
+            <property name="label" translatable="yes">Original</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+              <child>
+            <object class="GtkLabel">
+            <property name="label" translatable="yes">Corrupted</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+              <child>
+            <object class="GtkLabel">
+            <property name="label" translatable="yes">Context</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+
+
+                </object>
+
+
+
+<object class="GtkScrolledWindow">
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <child>
+
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+              <property name="halign">center</property>
+
+
+              <child>
+            <object class="GtkLabel" id="files_label">
+            <property name="label" translatable="yes">Files</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+
+          </child>
+
+              <child>
+            <object class="GtkLabel" id="bytes_label">
+            <property name="label" translatable="yes">Bytes</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+
+              <child>
+            <object class="GtkLabel" id="orig_label">
+            <property name="label" translatable="yes">Original</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+              <child>
+            <object class="GtkLabel" id="corr_label">
+            <property name="label" translatable="yes">Corrupted</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+              <child>
+            <object class="GtkLabel" id="context_label">
+            <property name="label" translatable="yes">Context</property>
+              <property name="wrap">true</property>
+              <property name="valign">start</property>
+              <property name="margin-start">10</property>
+            <style>
+              <class name="title-3"/>
+            </style>
+          </object>
+                </child>
+
+
+
+
+              </object>
+            </child>
+  </object>
+</child>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About GuiTest5</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

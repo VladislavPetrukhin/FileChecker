@@ -2,6 +2,7 @@ filechecker_sources = [
   'main.vala',
   'application.vala',
   'window.vala',
+  'detail_window.vala',
 ]
 
 filechecker_deps = [

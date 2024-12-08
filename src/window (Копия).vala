@@ -31,7 +31,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
     [GtkChild]
     private unowned Gtk.Label info_label;
-/*
+
     [GtkChild]
     private unowned Gtk.Label files_label;
 
@@ -46,7 +46,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
     [GtkChild]
     private unowned Gtk.Label context_label;
-*/
+
     [GtkChild]
     private unowned Gtk.Button folder_button1;
 
@@ -55,9 +55,6 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
     [GtkChild]
     private unowned Gtk.Button action_button;
-
-    [GtkChild]
-    private unowned Gtk.Box button_container;
 
 
     public Window (Gtk.Application app) {
@@ -123,15 +120,13 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
         analyzer.compare_directory(original_dir, corrupted_dir,results);
 
-        populate_buttons(results);
-
         string filename = "";
         string number_byte = "";
         string orig_byte = "";
         string corr_byte = "";
         string context_left = "";
         string context_right = "";
-/*
+
         foreach (var result in results) {
             info_label.set_text("Differences:");
             if(result.contains("byte")){
@@ -150,34 +145,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
 
 }
-        }*/
-    }
-
-    private void populate_buttons(ArrayList<string> results) {
-        // Очищаем контейнер
-        while (button_container.get_first_child() != null) {
-            button_container.remove(button_container.get_first_child());
         }
-
-        // Добавляем новые кнопки
-        for (int i = 0; i <= results.size-1; i++) {
-            int button_number = i;
-            if (!results[i].contains("byte")) {
-                continue;
-            }
-            var button = new Gtk.Button.with_label(results.get(i).split("File ")[1].split(" byte")[0]);
-
-            // Обработчик нажатия, передаём номер кнопки
-            button.clicked.connect(() => on_button_clicked(results.get(button_number)));
-
-            button_container.append(button);
-        }
-    }
-
-    private void on_button_clicked(string result) {
-        // Создаём новое окно и передаём строку
-        var new_window = new Filechecker.DetailWindow(this.get_application(), result);
-        new_window.present();
     }
 }
 

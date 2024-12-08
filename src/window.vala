@@ -114,6 +114,8 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
         analyzer.compare_directory(original_dir, corrupted_dir,results);
 
+
+
         create_buttons(results);
 
     }
@@ -130,7 +132,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
             if (!results[i].contains("byte")) {
                 continue;
             }
-            var button = new Gtk.Button.with_label(results.get(i).split("File ")[1].split(" byte")[0]);
+            var button = new Gtk.Button.with_label(results.get(i).split("File: ")[1].split(" byte")[0]);
 
             // Обработчик нажатия, передаём номер кнопки
             button.clicked.connect(() => on_button_clicked(results.get(button_number)));

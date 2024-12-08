@@ -24,7 +24,7 @@ public class Filechecker.DetailWindow : Adw.ApplicationWindow {
     public DetailWindow (Gtk.Application app, string result) {
         Object (application: app);
 
-        var filename = result.split("File ")[1].split(" byte")[0];
+        var filename = result.split("File: ")[1].split(" byte")[0];
         var number_byte = result.split("byte: ")[1].split(" orig")[0];
         var orig_byte = result.split("orig=")[1].split(" corr")[0];
         var corr_byte = result.split("corr=")[1].split(" left")[0];

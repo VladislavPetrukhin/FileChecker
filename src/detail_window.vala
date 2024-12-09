@@ -1,3 +1,4 @@
+
 [GtkTemplate (ui = "/org/gnome/filechecker/detail_window.ui")]
 public class Filechecker.DetailWindow : Adw.ApplicationWindow {
     [GtkChild]

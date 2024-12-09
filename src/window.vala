@@ -20,6 +20,7 @@
 using Gtk;
 using Gee;
 using FileCheck;
+using Adw;
 
 [GtkTemplate (ui = "/org/gnome/filechecker/window.ui")]
 public class Filechecker.Window : Adw.ApplicationWindow {
@@ -87,10 +88,9 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         dialog.close(); // Закрываем диалог после выбора
     });
 }
+ private void on_action_button_clicked() {
 
-    private void on_action_button_clicked() {
-
-        info_label.set_text("");
+        info_label.set_text("Analyzing...");
         var original_folder = dir_label1.get_text();
         var corrupted_folder = dir_label2.get_text();
 
@@ -112,13 +112,17 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         return;
         }
 
+
         analyzer.compare_directory(original_dir, corrupted_dir,results);
-
-
-
-        create_buttons(results);
+        if(results.size != 0){
+             info_label.set_text("Files with differences:");
+             create_buttons(results);
+            }else{
+               info_label.set_text("No differences");
+                }
 
     }
+
 
     private void create_buttons(ArrayList<string> results) {
         // Очищаем контейнер
@@ -147,6 +151,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         new_window.present();
     }
 }
+
 
 
 

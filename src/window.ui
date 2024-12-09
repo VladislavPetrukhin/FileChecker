@@ -39,7 +39,7 @@
 
             <child>
               <object class="GtkLabel" id="dir_label1">
-            <property name="label" translatable="yes">Please choose the directory</property>
+            <property name="label" translatable="yes">Please, choose the original directory</property>
                 <property name="width-chars">30</property>
             <style>
               <class name="title-4"/>
@@ -70,7 +70,7 @@
 
             <child>
             <object class="GtkLabel" id="dir_label2">
-            <property name="label" translatable="yes">Please choose the directory</property>
+            <property name="label" translatable="yes">Please, choose the corrupted directory</property>
               <property name="width-chars">30</property>
             <style>
               <class name="title-4"/>
@@ -170,7 +170,10 @@
 
             <object class="GtkBox" id="button_container">
             <property name="orientation">vertical</property>
+            <property name="width-request">200</property>
             <property name="spacing">10</property>
+              <property name="margin-start">150</property>
+              <property name="margin-end">150</property>
 
             <style>
               <class name="content"/>

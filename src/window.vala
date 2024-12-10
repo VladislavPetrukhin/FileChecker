@@ -22,6 +22,7 @@ using Gee;
 using FileCheck;
 using Adw;
 
+
 [GtkTemplate (ui = "/org/gnome/filechecker/window.ui")]
 public class Filechecker.Window : Adw.ApplicationWindow {
     [GtkChild]
@@ -49,9 +50,9 @@ public class Filechecker.Window : Adw.ApplicationWindow {
 
     private const int CONTEXT_SIZE_DEFAULT = 4;
 
-
     public Window (Gtk.Application app) {
         Object (application: app);
+        load_css();
 
         // Подключение сигналов
         folder_button1.clicked.connect(() => on_folder_button_clicked(1));
@@ -112,7 +113,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         return;
         }
 
-
+        //this is async task in lib
         analyzer.compare_directory(original_dir, corrupted_dir,results);
         if(results.size != 0){
              info_label.set_text("Files with differences:");
@@ -149,6 +150,37 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         // Создаём новое окно и передаём строку
         var new_window = new Filechecker.DetailWindow(this.get_application(), result);
         new_window.present();
+    }
+    private void load_css(){
+        var css_provider = new Gtk.CssProvider();
+        var display = Gdk.Display.get_default();
+
+        if (display != null)
+        {
+            Gtk.StyleContext.add_provider_for_display(
+                display,
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            );
+        }
+        string css_file = GLib.Environment.get_current_dir();
+        if(!css_file.contains("FileChecker")){
+            css_file+="/Projects/FileChecker";
+        }
+        if(css_file.contains("builddir")){
+            css_file+="/../..";
+            }
+
+            css_file += "/src/css/style.css";
+
+        try
+        {
+            css_provider.load_from_path(css_file);
+        }
+        catch (GLib.Error e)
+        {
+          //  GLib.Debug.print("Ошибка при загрузке CSS: " + e.message);
+        }
     }
 }
 

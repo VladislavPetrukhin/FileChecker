@@ -4,11 +4,11 @@
   <requires lib="Adw" version="1.0"/>
   <template class="FilecheckerDetailWindow" parent="AdwApplicationWindow">
      <property name="title" translatable="yes">Detail Analyze</property>
-    <property name="default-width">800</property>
+    <property name="default-width">1000</property>
     <property name="default-height">600</property>
     <property name="content">
       <object class="AdwToolbarView">
-        <child type="top">
+           <child type="top">
           <object class="AdwHeaderBar">
             <child type="end">
               <object class="GtkMenuButton">
@@ -142,11 +142,14 @@
 
             <child>
             <object class="GtkBox">
-            <property name="orientation">horizontal</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">10</property>
+              <property name="halign">center</property>
             <style>
               <class name="content"/>
             </style>
+
+
 
                <child>
               <object class="GtkLabel">
@@ -157,6 +160,14 @@
             </style>
           </object>
               </child>
+
+                <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <style>
+              <class name="content"/>
+            </style>
 
               <child>
               <object class="GtkLabel" id="context_left_orig_label">
@@ -173,7 +184,8 @@
             <property name="label" translatable="yes"></property>
             <property name="wrap">true</property>
             <style>
-              <class name="title-3"/>
+              <class name="title-4"/>
+              <class name="red-label"/>
             </style>
           </object>
               </child>
@@ -190,12 +202,13 @@
 
           </object>
             </child>
+              </object>
+            </child>
 
             <child>
             <object class="GtkBox">
-            <property name="orientation">horizontal</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">10</property>
-              <property name="halign">start</property>
             <style>
               <class name="content"/>
             </style>
@@ -209,6 +222,15 @@
             </style>
           </object>
               </child>
+
+              <child>
+            <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+              <property name="halign">center</property>
+            <style>
+              <class name="content"/>
+            </style>
 
 
               <child>
@@ -226,7 +248,8 @@
             <property name="label" translatable="yes"></property>
               <property name="wrap">true</property>
             <style>
-              <class name="title-3"/>
+              <class name="title-4"/>
+              <class name="red-label"/>
             </style>
           </object>
               </child>
@@ -242,6 +265,8 @@
               </child>
 
           </object>
+            </child>
+              </object>
             </child>
 
           </object>

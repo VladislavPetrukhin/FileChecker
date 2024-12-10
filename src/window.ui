@@ -53,6 +53,9 @@
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
         <property name="margin-start">10</property>
+                <style>
+                <class name="button"/>
+                  </style>
       </object>
             </child>
 
@@ -91,6 +94,9 @@
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
                 <property name="margin-start">10</property>
+                <style>
+                <class name="button"/>
+                  </style>
       </object>
             </child>
               </object>
@@ -145,6 +151,9 @@
                 <property name="width-request">200</property>
   <property name="height-request">50</property>
                 <property name="margin-top">20</property>
+                <style>
+                <class name="button"/>
+                  </style>
 
       </object>
             </child>
@@ -177,6 +186,7 @@
 
             <style>
               <class name="content"/>
+              <class name="box"/>
             </style>
           </object>
 

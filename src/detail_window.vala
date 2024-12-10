@@ -31,6 +31,7 @@ public class Filechecker.DetailWindow : Adw.ApplicationWindow {
         Object (application: app);
         load_css();
 
+
         var filename = result.split("File: ")[1].split(" byte")[0];
         var number_byte = result.split("byte: ")[1].split(" orig")[0];
         var orig_byte = result.split("orig=")[1].split(" corr")[0];
@@ -75,18 +76,23 @@ public class Filechecker.DetailWindow : Adw.ApplicationWindow {
                 }
 
     } catch (Error e) {
-        stderr.printf("Ошибка: начальный и конечный байты должны быть целыми числами.\n");
-        return "";
-    }
-
-    if (start_byte < 0 || end_byte < start_byte) {
-        stderr.printf("Ошибка: начальный байт должен быть неотрицательным, а конечный байт должен быть больше или равен начальному.\n");
+        stderr.printf("Error: The start and end bytes must be integers\n");
         return "";
     }
 
     try {
         File file = File.new_for_path(file_path);
         FileInputStream input_stream = file.read(null);
+
+        if (start_byte < 0) {
+           start_byte = 0;
+        }
+
+        FileInfo file_info = file.query_info("standard::size", FileQueryInfoFlags.NONE, null);
+        var file_size = file_info.get_size(); // Получаем размер файла из информации
+        if (end_byte >= file_size) {
+        end_byte = (int)(file_size - 1);
+        }
 
         // Пропускаем байты до начального
         input_stream.skip((size_t) start_byte, null);
@@ -97,20 +103,20 @@ public class Filechecker.DetailWindow : Adw.ApplicationWindow {
 
         // Читаем данные
         ssize_t bytes_read = input_stream.read(buffer, null);
+
         string text = "";
 
         if (bytes_read > 0) {
-            // Преобразуем считанные байты в строку для вывода
-            text = (string) buffer;
-            //stdout.printf("Содержимое файла с %d до %d байта:\n%s\n", start_byte, end_byte, content);
-        } else {
-            stderr.printf("Не удалось прочитать данные из файла.\n");
-        }
-
+                for (int i = 0; i < bytes_read; i++) {
+                    char c = (char) buffer[i];
+                     text += (c >= 32 && c <= 126) ? c.to_string() : ".";
+                }
+                print("\n");
+            }
         input_stream.close(null);
         return text;
     } catch (Error e) {
-        stderr.printf("Ошибка при работе с файлом: %s\n", e.message);
+        print("Error while working with the file: %s\n", e.message);
         return "";
     }
 

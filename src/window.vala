@@ -99,6 +99,10 @@ public class Filechecker.Window : Adw.ApplicationWindow {
             info_label.set_text("Please, choose both dirs");
             return;
         }
+        if (original_folder == corrupted_folder) {
+            info_label.set_text("Please, choose different dirs");
+            return;
+        }
 
         var results = new ArrayList<string>();
         var original_dir = File.new_for_path(original_folder);

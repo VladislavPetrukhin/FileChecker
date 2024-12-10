@@ -30,6 +30,7 @@
               <class name="content"/>
             </style>
 
+
             <child>
               <object class="GtkLabel" id="file_label">
             <property name="label" translatable="yes">Filename</property>

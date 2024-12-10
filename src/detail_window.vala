@@ -21,8 +21,13 @@ public class Filechecker.DetailWindow : Adw.ApplicationWindow {
     private unowned Gtk.Label context_bytes_corr_label;
     [GtkChild]
     private unowned Gtk.Label context_right_corr_label;
+    [GtkChild]
+    private unowned Gtk.Label context_text_orig;
+    [GtkChild]
+    private unowned Gtk.Label context_text_corr;
 
-    public DetailWindow (Gtk.Application app, string result) {
+    public DetailWindow (Gtk.Application app, string result,
+                         string original_folder, string corrupted_folder, int context_size) {
         Object (application: app);
         load_css();
 
@@ -44,8 +49,73 @@ public class Filechecker.DetailWindow : Adw.ApplicationWindow {
         context_bytes_corr_label.set_text(corr_byte);
         context_right_corr_label.set_text(context_right);
 
+        string text_orig = get_text(original_folder,filename,number_byte, context_size);
+        string text_corr = get_text(corrupted_folder,filename,number_byte, context_size);
+
+        if(text_orig != text_corr){
+            context_text_orig.set_text(text_orig);
+            context_text_corr.set_text(text_corr);
+            }
 
     }
+
+    private string get_text(string original_folder, string filename, string number_byte,
+    int context_size){
+        string file_path = original_folder + "/" + filename;
+        int start_byte, end_byte;
+
+    try {
+        if(number_byte.contains(", ")){
+            start_byte = int.parse(number_byte.split(", ")[0]) - context_size;
+        var count_parts = number_byte.split(", ");
+        end_byte = int.parse(count_parts[count_parts.length-1]) + context_size;
+            }else{
+                start_byte = int.parse(number_byte) - context_size;
+                end_byte = int.parse(number_byte) + context_size;
+                }
+
+    } catch (Error e) {
+        stderr.printf("Ошибка: начальный и конечный байты должны быть целыми числами.\n");
+        return "";
+    }
+
+    if (start_byte < 0 || end_byte < start_byte) {
+        stderr.printf("Ошибка: начальный байт должен быть неотрицательным, а конечный байт должен быть больше или равен начальному.\n");
+        return "";
+    }
+
+    try {
+        File file = File.new_for_path(file_path);
+        FileInputStream input_stream = file.read(null);
+
+        // Пропускаем байты до начального
+        input_stream.skip((size_t) start_byte, null);
+
+        // Вычисляем количество байтов для чтения
+        size_t length = (size_t) (end_byte - start_byte + 1);
+        uint8[] buffer = new uint8[length];
+
+        // Читаем данные
+        ssize_t bytes_read = input_stream.read(buffer, null);
+        string text = "";
+
+        if (bytes_read > 0) {
+            // Преобразуем считанные байты в строку для вывода
+            text = (string) buffer;
+            //stdout.printf("Содержимое файла с %d до %d байта:\n%s\n", start_byte, end_byte, content);
+        } else {
+            stderr.printf("Не удалось прочитать данные из файла.\n");
+        }
+
+        input_stream.close(null);
+        return text;
+    } catch (Error e) {
+        stderr.printf("Ошибка при работе с файлом: %s\n", e.message);
+        return "";
+    }
+
+  }
+
         private void load_css(){
         var css_provider = new Gtk.CssProvider();
         var display = Gdk.Display.get_default();

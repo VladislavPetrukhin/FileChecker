@@ -185,7 +185,7 @@
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
-              <class name="red-label"/>
+              <class name="green-label"/>
             </style>
           </object>
               </child>
@@ -202,6 +202,18 @@
 
           </object>
             </child>
+
+              <child>
+              <object class="GtkLabel" id="context_text_orig">
+            <property name="label" translatable="yes"></property>
+            <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
+
               </object>
             </child>
 
@@ -266,9 +278,18 @@
 
           </object>
             </child>
+              <child>
+              <object class="GtkLabel" id="context_text_corr">
+            <property name="label" translatable="yes"></property>
+            <property name="wrap">true</property>
+            <style>
+              <class name="title-4"/>
+            </style>
+          </object>
+              </child>
+
               </object>
             </child>
-
           </object>
         </property>
       </object>

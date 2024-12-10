@@ -117,15 +117,16 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         analyzer.compare_directory(original_dir, corrupted_dir,results);
         if(results.size != 0){
              info_label.set_text("Files with differences:");
-             create_buttons(results);
+             create_buttons(results,original_folder, corrupted_folder, analyzer.CONTEXT_SIZE);
             }else{
                info_label.set_text("No differences");
-                }
+            }
 
     }
 
 
-    private void create_buttons(ArrayList<string> results) {
+    private void create_buttons(ArrayList<string> results, string original_folder,
+                                string corrupted_folder, int context_size) {
         // Очищаем контейнер
         while (button_container.get_first_child() != null) {
             button_container.remove(button_container.get_first_child());
@@ -140,15 +141,18 @@ public class Filechecker.Window : Adw.ApplicationWindow {
             var button = new Gtk.Button.with_label(results.get(i).split("File: ")[1].split(" byte")[0]);
 
             // Обработчик нажатия, передаём номер кнопки
-            button.clicked.connect(() => on_button_clicked(results.get(button_number)));
+            button.clicked.connect(() => on_button_clicked(
+            results.get(button_number),original_folder,corrupted_folder,context_size));
 
             button_container.append(button);
         }
     }
 
-    private void on_button_clicked(string result) {
+    private void on_button_clicked(string result, string original_folder,
+                                   string corrupted_folder, int context_size) {
         // Создаём новое окно и передаём строку
-        var new_window = new Filechecker.DetailWindow(this.get_application(), result);
+        var new_window = new Filechecker.DetailWindow(
+        this.get_application(), result, original_folder, corrupted_folder, context_size);
         new_window.present();
     }
     private void load_css(){

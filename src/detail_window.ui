@@ -29,8 +29,6 @@
             <style>
               <class name="content"/>
             </style>
-
-
             <child>
               <object class="GtkLabel" id="file_label">
             <property name="label" translatable="yes">Filename</property>
@@ -61,10 +59,9 @@
           </object>
               </child>
 
-
               <child>
               <object class="GtkLabel" id="bytes_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -74,7 +71,6 @@
 
           </object>
             </child>
-
 
             <child>
             <object class="GtkBox">
@@ -94,10 +90,9 @@
           </object>
               </child>
 
-
               <child>
               <object class="GtkLabel" id="orig_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
                 <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -107,7 +102,6 @@
 
           </object>
             </child>
-
 
             <child>
             <object class="GtkBox">
@@ -127,10 +121,9 @@
           </object>
               </child>
 
-
               <child>
               <object class="GtkLabel" id="corr_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
           <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -149,8 +142,6 @@
             <style>
               <class name="content"/>
             </style>
-
-
 
                <child>
               <object class="GtkLabel">
@@ -172,7 +163,7 @@
 
               <child>
               <object class="GtkLabel" id="context_left_orig_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -182,7 +173,7 @@
 
               <child>
               <object class="GtkLabel" id="context_bytes_orig_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -193,7 +184,7 @@
 
               <child>
               <object class="GtkLabel" id="context_right_orig_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -206,14 +197,13 @@
 
               <child>
               <object class="GtkLabel" id="context_text_orig">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
             </style>
           </object>
               </child>
-
 
               </object>
             </child>
@@ -245,10 +235,9 @@
               <class name="content"/>
             </style>
 
-
               <child>
               <object class="GtkLabel" id="context_left_corr_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -258,7 +247,7 @@
 
               <child>
               <object class="GtkLabel" id="context_bytes_corr_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
               <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -269,7 +258,7 @@
 
               <child>
               <object class="GtkLabel" id="context_right_corr_label">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>
@@ -281,7 +270,7 @@
             </child>
               <child>
               <object class="GtkLabel" id="context_text_corr">
-            <property name="label" translatable="yes"></property>
+            <property name="label" translatable="yes"/>
             <property name="wrap">true</property>
             <style>
               <class name="title-4"/>

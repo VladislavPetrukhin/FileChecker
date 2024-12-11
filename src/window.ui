@@ -34,9 +34,6 @@
             <property name="orientation">horizontal</property>
               <property name="halign">center</property>
 
-
-
-
             <child>
               <object class="GtkLabel" id="dir_label1">
             <property name="label" translatable="yes">Please, choose the original directory</property>
@@ -59,7 +56,6 @@
       </object>
             </child>
 
-
               </object>
               </child>
 
@@ -67,9 +63,6 @@
             <object class="GtkBox">
             <property name="orientation">horizontal</property>
               <property name="halign">center</property>
-
-
-
 
             <child>
             <object class="GtkLabel" id="dir_label2">
@@ -83,9 +76,7 @@
 
               <child>
 
-
-</child>
-
+        </child>
 
             <child>
               <object class="GtkButton" id="folder_button2">
@@ -97,14 +88,14 @@
                 <style>
                 <class name="button"/>
                   </style>
-      </object>
+            </object>
             </child>
               </object>
               </child>
             <child>
               <object class="GtkBox" id="box_with_constraints">
-  <property name="width-request">200</property>
-  <property name="height-request">50</property>
+              <property name="width-request">200</property>
+               <property name="height-request">50</property>
                 <property name="halign">center</property>
                 <property name="orientation">vertical</property>
 
@@ -116,7 +107,6 @@
               <class name="content"/>
             </style>
 
-
                   <child>
             <object class="GtkLabel">
             <property name="label" translatable="yes">Context size:</property>
@@ -124,8 +114,8 @@
               <class name="title-4"/>
             </style>
           </object>
-                </child>
-<child>
+          </child>
+       <child>
           <object class="GtkSpinButton" id="spin_button">
             <property name="adjustment">
               <object class="GtkAdjustment">
@@ -136,29 +126,26 @@
             </property>
           </object>
         </child>
-                    </object>
-</child>
-
-
-
+        </object>
+    </child>
 
   <child>
-              <object class="GtkButton" id="action_button">
+              <object class="GtkButton" id="compare_button">
         <property name="label" translatable="yes">Compare</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
                 <property name="width-request">200</property>
-  <property name="height-request">50</property>
+                <property name="height-request">50</property>
                 <property name="margin-top">20</property>
                 <style>
                 <class name="button"/>
                   </style>
 
-      </object>
+               </object>
             </child>
-                </object>
-  </child>
+          </object>
+          </child>
 
             <child>
             <object class="GtkLabel" id="info_label">
@@ -167,12 +154,11 @@
               <class name="title-1"/>
             </style>
           </object>
-                </child>
+             </child>
 
             <child>
 
-
-<object class="GtkScrolledWindow">
+    <object class="GtkScrolledWindow">
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <child>
@@ -190,12 +176,9 @@
             </style>
           </object>
 
-
-
-
             </child>
-  </object>
-</child>
+            </object>
+            </child>
           </object>
         </property>
       </object>
@@ -218,3 +201,4 @@
     </section>
   </menu>
 </interface>
+

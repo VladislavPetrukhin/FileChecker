@@ -12,7 +12,7 @@ sudo apt-get install meson vala gcc libgee0.8-devel gettext-devel libadwaita-dev
 Install:
 
 cd FileChecker
-sudo mv libfilechecker.so /usr/lib
+sudo mv libfilecheck.so /usr/lib
 meson setup builddir
 meson compile -C builddir
 ./builddir/src/filechecker

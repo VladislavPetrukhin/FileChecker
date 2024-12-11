@@ -7,8 +7,68 @@ namespace FileCheck {
 
         public Analyzer() {}
 
-        // The number of bytes before and after a detected difference for context
+        // The number of bytes before and after a difference for context
         public int CONTEXT_SIZE = 4;
+
+    // Test function to check the left context printing
+    private void test_print_left_context() {
+        uint8[] buffer = {0x01, 0x02, 0x03, 0x04, 0x05};
+        string result = FileComparator.print_left_context(buffer, 3, 0);
+
+        assert(result == "0x01 0x02 0x03 ");
+    }
+
+    // Test function to check the right context printing
+    private void test_print_right_context(){
+        uint8[] buffer = {0x01, 0x02, 0x03, 0x04, 0x05};
+        string result = FileComparator.print_right_context(buffer, 1, 5);
+
+        assert(result == "0x03 0x04 0x05 ");
+    }
+
+    // Helper function to create a temporary file with content
+    private File? create_temp_file(string template, string content) {
+        FileIOStream stream;
+        try {
+            var temp_file = File.new_tmp(template, out stream);
+            size_t bytes_written = 0;
+            stream.output_stream.write_all(content.data, out bytes_written, null);
+            stream.close();
+
+            return temp_file;
+        } catch (Error e) {
+            stderr.printf("Error creating file for compare test: %s\n", e.message);
+            return null;
+        }
+    }
+
+    // Test function to compare two files
+    private void test_compare_files() {
+        // Create a MemoryInputStream for the original file data
+        var original_stream = new MemoryInputStream();
+        original_stream.add_data("hello".data, null);
+
+        // Create a MemoryInputStream for the corrupted file data
+        var corrupted_stream = new MemoryInputStream();
+        corrupted_stream.add_data("hxllo".data, null);
+
+        // Create temporary files for original and corrupted data
+        var original_file = create_temp_file("original_XXXXXX", "hello");
+        var corrupted_file = create_temp_file("corrupted_XXXXXX", "hxllo");
+
+        //comparing the two files asynchronously
+        FileComparator.compare_files.begin(original_file, corrupted_file, (obj, res) => {
+            try {
+                var results = FileComparator.compare_files.end(res);
+
+                assert(results.size == 1);
+                assert(results.get(0).contains("orig=0x65 corr=0x78"));
+            } catch (Error e) {
+                stderr.printf("Error in compare test: %s\n", e.message);
+            }
+        });
+    }
+
 
         // Recursive function to compare files and directories
         public void compare_directory(File original_dir, File corrupted_dir, ArrayList<string> results) {

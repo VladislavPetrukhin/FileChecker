@@ -36,8 +36,13 @@ public class Filechecker.DetailWindow : Adw.ApplicationWindow {
         var number_byte = result.split("byte: ")[1].split(" orig")[0];
         var orig_byte = result.split("orig=")[1].split(" corr")[0];
         var corr_byte = result.split("corr=")[1].split(" left")[0];
-        var context_left = result.split("left: ")[1].split(" right")[0];
-        var context_right = result.split("right: ")[1];
+        var context_left = "";
+        var context_right = "";
+
+        if(context_size>0){
+        context_left = result.split("left: ")[1].split(" right")[0];
+        context_right = result.split("right: ")[1];
+        }
 
         file_label.set_text(filename);
         bytes_label.set_text(number_byte);
@@ -64,8 +69,13 @@ public class Filechecker.DetailWindow : Adw.ApplicationWindow {
 //get text context from file
 private string get_text(string original_folder, string filename, string number_byte,
     int context_size){
-        string file_path = original_folder + "/" + filename;
-        int start_byte, end_byte;
+
+    if(context_size == 0){
+        return "";
+    }
+
+    string file_path = original_folder + "/" + filename;
+    int start_byte, end_byte;
 
     try {
         // Parses start and end byte ranges if there are few diffs in file
@@ -119,7 +129,7 @@ private string get_text(string original_folder, string filename, string number_b
         input_stream.close(null);
         return text;
     } catch (Error e) {
-        stderr.printf("Error while working with the file: " + e.message);
+        stderr.printf("Error while working with the file: %s", e.message);
         return "";
     }
 
@@ -155,7 +165,7 @@ private void load_css(){
         }
         catch (GLib.Error e)
         {
-          stderr.printf("Error while loading CSS" + css_file);
+          stderr.printf("Error while loading CSS: %s", css_file);
         }
     }
 }

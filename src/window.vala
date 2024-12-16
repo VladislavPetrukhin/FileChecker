@@ -19,7 +19,6 @@
  */
 using Gtk;
 using Gee;
-using FileCheck;
 using Adw;
 
 
@@ -108,7 +107,7 @@ public class Filechecker.Window : Adw.ApplicationWindow {
         var original_dir = File.new_for_path(original_folder);
         var corrupted_dir = File.new_for_path(corrupted_folder);
 
-        var analyzer = new Analyzer(); //use Filecheck shared lib
+        var analyzer = new FileCheck.Analyzer(); //use Filecheck shared lib
 
         analyzer.CONTEXT_SIZE = (int) spin_button.get_value();
 

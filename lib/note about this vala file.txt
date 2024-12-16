@@ -1,1 +1,0 @@
-vala file in this folder not use by program. program use lib from usr/local/lib. this vala file needs only for save lib code for future changes

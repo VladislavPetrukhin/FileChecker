@@ -11,7 +11,7 @@ valac = meson.get_compiler('vala')
 
 srcdir = meson.project_source_root() / 'src'
 
-vapi_dir = meson.current_source_dir() / 'vapi'
+vapi_dir = meson.current_source_dir()
 
 add_project_arguments(['--vapidir', vapi_dir], language: 'vala')
 add_project_arguments('-DGETTEXT_PACKAGE="' + meson.project_name (), language: 'c')
